@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
-class Home extends Component {
+type Props = {};
+
+class Home extends Component<Props> {
   render() {
     return (
         <div>Home page</div>

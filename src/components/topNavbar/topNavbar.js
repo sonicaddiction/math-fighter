@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
+import './topNavbar.css';
 
-class TopNavbar extends Component {
+type Props = {};
+
+class TopNavbar extends Component<Props> {
   render() {
     return (
         <ul className="navbar">

@@ -2,22 +2,28 @@ import React, { Component } from 'react';
 import './App.css';
 import TopNavbar from './components/topNavbar/topNavbar';
 import { BrowserRouter } from 'react-router-dom'
-import Contact from './pages/contact/contact';
+import { ContactContainer } from './pages/contact/contact';
 import Home from './pages/home/home';
 import { Switch, Route } from 'react-router-dom'
+import { store } from './store';
+import { Provider } from 'react-redux';
 
-class App extends Component {
+type Props = {};
+
+class App extends Component<Props> {
   render() {
     return (
-      <BrowserRouter>
-        <div className="App">
-          <TopNavbar />
-          <Switch>
-            <Route exact path='/' component={Home}/>
-            <Route path='/contact' component={Contact}/>
-          </Switch>
-        </div>
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <div className="App">
+            <TopNavbar />
+            <Switch>
+              <Route exact path='/' component={Home}/>
+              <Route path='/contact' component={ContactContainer}/>
+            </Switch>
+          </div>
+        </BrowserRouter>
+      </Provider>
     );
   }
 }

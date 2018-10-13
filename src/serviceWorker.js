@@ -8,6 +8,10 @@
 // To learn more about the benefits of this model, read https://goo.gl/KwvDNy.
 // This link also includes instructions on opting out of this behavior.
 
+const PUBLIC_URL: string = process.env.PUBLIC_URL != null
+  ? process.env.PUBLIC_URL
+  : '';
+
 const isLocalhost = Boolean(
   window.location.hostname === 'localhost' ||
     // [::1] is the IPv6 localhost address.
@@ -21,7 +25,7 @@ const isLocalhost = Boolean(
 export function register(config) {
   if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
     // The URL constructor is available in all browsers that support SW.
-    const publicUrl = new URL(process.env.PUBLIC_URL, window.location);
+    const publicUrl = new URL(PUBLIC_URL, window.location);
     if (publicUrl.origin !== window.location.origin) {
       // Our service worker won't work if PUBLIC_URL is on a different origin
       // from what our page is served on. This might happen if a CDN is used to
@@ -30,7 +34,7 @@ export function register(config) {
     }
 
     window.addEventListener('load', () => {
-      const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
+      const swUrl = `${PUBLIC_URL}/service-worker.js`;
 
       if (isLocalhost) {
         // This is running on localhost. Let's check if a service worker still exists or not.
@@ -38,12 +42,14 @@ export function register(config) {
 
         // Add some additional logging to localhost, pointing developers to the
         // service worker/PWA documentation.
-        navigator.serviceWorker.ready.then(() => {
-          console.log(
-            'This web app is being served cache-first by a service ' +
-              'worker. To learn more, visit https://goo.gl/SC7cgQ'
-          );
-        });
+        if (navigator.serviceWorker != null) {
+          navigator.serviceWorker.ready.then(() => {
+            console.log(
+              'This web app is being served cache-first by a service ' +
+                'worker. To learn more, visit https://goo.gl/SC7cgQ'
+            );
+          });
+        }
       } else {
         // Is not local host. Just register service worker
         registerValidSW(swUrl, config);
@@ -53,6 +59,10 @@ export function register(config) {
 }
 
 function registerValidSW(swUrl, config) {
+  if (navigator.serviceWorker === null) {
+    return;
+  }
+
   navigator.serviceWorker
     .register(swUrl)
     .then(registration => {
@@ -101,11 +111,13 @@ function checkValidServiceWorker(swUrl, config) {
         response.headers.get('content-type').indexOf('javascript') === -1
       ) {
         // No service worker found. Probably a different app. Reload the page.
-        navigator.serviceWorker.ready.then(registration => {
-          registration.unregister().then(() => {
-            window.location.reload();
+        if (navigator.serviceWorker !== null) {
+          navigator.serviceWorker.ready.then(registration => {
+            registration.unregister().then(() => {
+              window.location.reload();
+            });
           });
-        });
+        }
       } else {
         // Service worker found. Proceed as normal.
         registerValidSW(swUrl, config);
@@ -120,8 +132,10 @@ function checkValidServiceWorker(swUrl, config) {
 
 export function unregister() {
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.ready.then(registration => {
-      registration.unregister();
-    });
+    if (navigator.serviceWorker !== null) {
+      navigator.serviceWorker.ready.then(registration => {
+        registration.unregister();
+      });
+    }
   }
 }
