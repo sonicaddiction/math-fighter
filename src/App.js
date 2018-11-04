@@ -6,7 +6,7 @@ import Home from './pages/home/home';
 import { Switch, Route } from 'react-router-dom';
 import { store } from './store';
 import { Provider } from 'react-redux';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import { CssBaseline } from '@material-ui/core';
 
 type Props = {};
 

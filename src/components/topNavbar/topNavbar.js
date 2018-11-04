@@ -1,11 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Button from '@material-ui/core/Button';
-import { withStyles } from '@material-ui/core/styles';
-
-type Props = {};
+import { withStyles } from '@material-ui/core';
+import { AppBar, Toolbar, Button } from '@material-ui/core';
 
 const styles = {
   root: {
