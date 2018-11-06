@@ -1,4 +1,4 @@
-// flow-typed signature: 69432f3d7154dffec6259d4cbfd28252
+// flow-typed signature: ac4c041fd2da5fd92ead661c4e34352c
 // flow-typed version: <<STUB>>/@material-ui/core_v^3.2.0/flow_v0.83.0
 
 /**
@@ -930,11 +930,19 @@ declare module '@material-ui/core/es/List/List' {
   declare module.exports: any;
 }
 
+declare module '@material-ui/core/es/List/ListContext' {
+  declare module.exports: any;
+}
+
 declare module '@material-ui/core/es/ListItem/index' {
   declare module.exports: any;
 }
 
 declare module '@material-ui/core/es/ListItem/ListItem' {
+  declare module.exports: any;
+}
+
+declare module '@material-ui/core/es/ListItem/MergeListContext' {
   declare module.exports: any;
 }
 
@@ -1522,6 +1530,10 @@ declare module '@material-ui/core/es/utils/ownerWindow' {
   declare module.exports: any;
 }
 
+declare module '@material-ui/core/es/utils/ponyfillGlobal' {
+  declare module.exports: any;
+}
+
 declare module '@material-ui/core/es/utils/reactHelpers' {
   declare module.exports: any;
 }
@@ -1834,11 +1846,19 @@ declare module '@material-ui/core/List/List' {
   declare module.exports: any;
 }
 
+declare module '@material-ui/core/List/ListContext' {
+  declare module.exports: any;
+}
+
 declare module '@material-ui/core/ListItem/index' {
   declare module.exports: any;
 }
 
 declare module '@material-ui/core/ListItem/ListItem' {
+  declare module.exports: any;
+}
+
+declare module '@material-ui/core/ListItem/MergeListContext' {
   declare module.exports: any;
 }
 
@@ -2431,6 +2451,10 @@ declare module '@material-ui/core/utils/ownerDocument' {
 }
 
 declare module '@material-ui/core/utils/ownerWindow' {
+  declare module.exports: any;
+}
+
+declare module '@material-ui/core/utils/ponyfillGlobal' {
   declare module.exports: any;
 }
 
@@ -3152,11 +3176,17 @@ declare module '@material-ui/core/es/List/index.js' {
 declare module '@material-ui/core/es/List/List.js' {
   declare module.exports: $Exports<'@material-ui/core/es/List/List'>;
 }
+declare module '@material-ui/core/es/List/ListContext.js' {
+  declare module.exports: $Exports<'@material-ui/core/es/List/ListContext'>;
+}
 declare module '@material-ui/core/es/ListItem/index.js' {
   declare module.exports: $Exports<'@material-ui/core/es/ListItem/index'>;
 }
 declare module '@material-ui/core/es/ListItem/ListItem.js' {
   declare module.exports: $Exports<'@material-ui/core/es/ListItem/ListItem'>;
+}
+declare module '@material-ui/core/es/ListItem/MergeListContext.js' {
+  declare module.exports: $Exports<'@material-ui/core/es/ListItem/MergeListContext'>;
 }
 declare module '@material-ui/core/es/ListItemAvatar/index.js' {
   declare module.exports: $Exports<'@material-ui/core/es/ListItemAvatar/index'>;
@@ -3596,6 +3626,9 @@ declare module '@material-ui/core/es/utils/ownerDocument.js' {
 declare module '@material-ui/core/es/utils/ownerWindow.js' {
   declare module.exports: $Exports<'@material-ui/core/es/utils/ownerWindow'>;
 }
+declare module '@material-ui/core/es/utils/ponyfillGlobal.js' {
+  declare module.exports: $Exports<'@material-ui/core/es/utils/ponyfillGlobal'>;
+}
 declare module '@material-ui/core/es/utils/reactHelpers.js' {
   declare module.exports: $Exports<'@material-ui/core/es/utils/reactHelpers'>;
 }
@@ -3836,11 +3869,17 @@ declare module '@material-ui/core/List/index.js' {
 declare module '@material-ui/core/List/List.js' {
   declare module.exports: $Exports<'@material-ui/core/List/List'>;
 }
+declare module '@material-ui/core/List/ListContext.js' {
+  declare module.exports: $Exports<'@material-ui/core/List/ListContext'>;
+}
 declare module '@material-ui/core/ListItem/index.js' {
   declare module.exports: $Exports<'@material-ui/core/ListItem/index'>;
 }
 declare module '@material-ui/core/ListItem/ListItem.js' {
   declare module.exports: $Exports<'@material-ui/core/ListItem/ListItem'>;
+}
+declare module '@material-ui/core/ListItem/MergeListContext.js' {
+  declare module.exports: $Exports<'@material-ui/core/ListItem/MergeListContext'>;
 }
 declare module '@material-ui/core/ListItemAvatar/index.js' {
   declare module.exports: $Exports<'@material-ui/core/ListItemAvatar/index'>;
@@ -4285,6 +4324,9 @@ declare module '@material-ui/core/utils/ownerDocument.js' {
 }
 declare module '@material-ui/core/utils/ownerWindow.js' {
   declare module.exports: $Exports<'@material-ui/core/utils/ownerWindow'>;
+}
+declare module '@material-ui/core/utils/ponyfillGlobal.js' {
+  declare module.exports: $Exports<'@material-ui/core/utils/ponyfillGlobal'>;
 }
 declare module '@material-ui/core/utils/reactHelpers.js' {
   declare module.exports: $Exports<'@material-ui/core/utils/reactHelpers'>;

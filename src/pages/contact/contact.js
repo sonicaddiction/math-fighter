@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import KeyValue from '../../components/keyValue/keyValue';
-import { Address } from './contactReducer';
+import type { Address } from './contactReducer';
 import { Paper, withStyles } from '@material-ui/core';
 
 type Props = {
