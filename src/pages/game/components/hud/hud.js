@@ -8,7 +8,7 @@ import {
 } from '@material-ui/core';
 import React from 'react';
 import { connect } from 'react-redux';
-import { damageCharacter } from '../../actionCreators';
+import { damageCharacter, incrementRound } from '../../actionCreators';
 
 const styles = theme => ({
   card: {
@@ -28,7 +28,7 @@ function Hud(props: CharacterProps) {
           gutterBottom>
           Battle Info
         </Typography>
-        <Typography component="p">Round: 4</Typography>
+        <Typography component="p">Round: {props.round}</Typography>
       </CardContent>
       <CardActions>
         <Button onClick={props.onAttack}>Attack</Button>
@@ -46,7 +46,13 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
+const mapStateToProps = state => {
+  return {
+    round: state.battle.round.currentRound,
+  };
+};
+
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(withStyles(styles)(Hud));

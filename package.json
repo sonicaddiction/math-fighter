@@ -9,12 +9,13 @@
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.0.4",
-    "redux": "^4.0.0"
+    "redux": "^4.0.0",
+    "redux-observable": "^1.0.0"
   },
   "scripts": {
-    "start": "$(npm bin)/flow && react-scripts start",
-    "build": "$(npm bin)/flow && react-scripts build",
-    "test": "$(npm bin)/flow && react-scripts test --env=jsdom",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "flow": "$(npm bin)/flow",
     "postinstall": "$(npm bin)/flow-typed install"

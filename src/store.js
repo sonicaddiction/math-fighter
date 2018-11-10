@@ -1,11 +1,14 @@
-import { combineReducers, createStore } from 'redux';
+import { combineReducers, createStore, compose, applyMiddleware } from 'redux';
 import { contactReducer } from './pages/contact/contactReducer';
 import { battleReducer } from './pages/game/reducers/gameReducer';
+import { createEpicMiddleware, combineEpics } from 'redux-observable';
 
-export const reducers = combineReducers({
+export const rootReducer = combineReducers({
   contact: contactReducer,
   battle: battleReducer,
 });
+
+export const rootEpic = combineEpics({});
 
 export function createHigherOrderReducer(reducerFunction, reducerId) {
   return (state, action) => {
@@ -24,11 +27,18 @@ export type RootState = {};
 
 // store.js
 export function configureStore(initialState: RootState = {}) {
+  const composeEnhancers =
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  const epicMiddleware = createEpicMiddleware();
+
   const store = createStore(
-    reducers,
+    rootReducer,
     initialState,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    composeEnhancers(applyMiddleware(epicMiddleware))
   );
+
+  // epicMiddleware.run(rootEpic);
+
   return store;
 }
 

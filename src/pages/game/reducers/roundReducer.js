@@ -1,3 +1,5 @@
+import { GAME } from '../actionCreators';
+
 const initialRoundState = {
   currentRound: 0,
   infoText: [],
@@ -8,6 +10,11 @@ export const roundReducer = (
   action: Action
 ) => {
   switch (action.type) {
+    case GAME.INCREMENT_ROUND:
+      return {
+        ...state,
+        currentRound: state.currentRound + 1,
+      };
     default:
       return state;
   }

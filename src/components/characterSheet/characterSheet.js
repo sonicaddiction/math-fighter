@@ -1,6 +1,7 @@
 import { Card, CardContent, Typography } from '@material-ui/core';
 import React from 'react';
 import KeyValue from '../keyValue/keyValue';
+import type { Character } from '../../types/gameEngine';
 
 type CharacterProps = {
   character: Character,
