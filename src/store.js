@@ -1,8 +1,10 @@
 import { combineReducers, createStore } from 'redux';
 import { contactReducer } from './pages/contact/contactReducer';
+import { battleReducer } from './pages/game/gameReducer';
 
 export const reducers = combineReducers({
   contact: contactReducer,
+  battle: battleReducer,
 });
 
 export type RootState = {};
