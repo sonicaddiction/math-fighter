@@ -1,5 +1,7 @@
+import { Grid, withStyles, Paper } from '@material-ui/core';
 import React, { Component } from 'react';
-import { withStyles, Grid, Paper } from '@material-ui/core';
+import { connect } from 'react-redux';
+import CharacterSheet from '../../components/characterSheet/characterSheet';
 
 type Props = {};
 
@@ -20,8 +22,14 @@ class Game extends Component<Props> {
     return (
       <div className={classes.root}>
         <Grid container spacing={24}>
-          <Grid item xs={6}>
-            <Paper className={classes.paper}>Game page</Paper>
+          <Grid item xs={12} sm={6}>
+            <CharacterSheet character={this.props.battle.player} />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <CharacterSheet character={this.props.battle.enemy} />
+          </Grid>
+          <Grid item xs={12}>
+            <Paper className={classes.paper}>Battle info</Paper>
           </Grid>
         </Grid>
       </div>
@@ -29,4 +37,8 @@ class Game extends Component<Props> {
   }
 }
 
-export default withStyles(styles)(Game);
+const mapStateToProps = state => ({
+  battle: state.battle,
+});
+
+export default connect(mapStateToProps)(withStyles(styles)(Game));
