@@ -8,7 +8,7 @@ import {
 } from '@material-ui/core';
 import React from 'react';
 import { connect } from 'react-redux';
-import { damageCharacter, incrementRound } from '../../actionCreators';
+import { damageCharacter } from '../../actionCreators';
 
 const styles = theme => ({
   card: {
