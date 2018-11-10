@@ -25,8 +25,7 @@ function Hud(props: CharacterProps) {
         <Typography
           className={classes.title}
           color="textSecondary"
-          gutterBottom
-        >
+          gutterBottom>
           Battle Info
         </Typography>
         <Typography component="p">Round: 4</Typography>
@@ -41,7 +40,7 @@ function Hud(props: CharacterProps) {
 const mapDispatchToProps = dispatch => {
   return {
     onAttack: () => {
-      dispatch(damageCharacter('player')(10));
+      dispatch(damageCharacter('enemy')(10));
     },
   };
 };

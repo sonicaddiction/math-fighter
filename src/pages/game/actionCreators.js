@@ -6,13 +6,13 @@ export const SET_ENEMY = 'SET_ENEMY';
 
 export const DAMAGE_CHARACTER = 'DAMAGE_CHARACTER';
 
-export const createHigherOrderAction = (actionType, payload) => {
-  return id => payload => ({
+export function createHigherOrderAction<T>(actionType, payload: T) {
+  return id => (payload: T) => ({
     id,
     type: actionType,
     payload,
   });
-};
+}
 
 export function setPlayer(player: Character): Action {
   return { type: SET_PLAYER, payload: player };
@@ -21,6 +21,15 @@ export function setPlayer(player: Character): Action {
 export function setEnemy(enemy: Character): Action {
   return { type: SET_ENEMY, payload: enemy };
 }
+
+/* TODO: Fix transpilation
+type DamageCharacterPayload = {
+  damage: number,
+};
+export const damageCharacter = createHigherOrderAction<DamageCharacterPayload>(
+  'DAMAGE_CHARACTER'
+);
+*/
 
 export const damageCharacter = createHigherOrderAction('DAMAGE_CHARACTER');
 
