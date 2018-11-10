@@ -1,27 +1,35 @@
-import type { Action } from '../../types';
-import type { Character } from '../../types/gameEngine';
+import { combineReducers } from 'redux';
 
-export type Battle = {
-  player: Character,
-  enemy: Character,
-  currentRound: number,
-};
-
-const createRandomPlayer = (): Character => ({
+const createRandomPlayer = () => ({
   name: `Character-${Math.floor(Math.random() * 1000)}`,
   health: Math.floor(Math.random() * 20),
   attackDice: 1,
 });
 
-const initialState: Address = {
-  player: createRandomPlayer(),
-  enemy: createRandomPlayer(),
-  currentRound: 0,
-};
-
-export const battleReducer = (state: Battle = initialState, action: Action) => {
+export const characterReducer = (state = createRandomPlayer(), action) => {
   switch (action.type) {
     default:
       return state;
   }
 };
+
+const initialRoundState = {
+  currentRound: 0,
+  infoText: [],
+};
+
+export const roundReducer = (
+  state: Battle = initialRoundState,
+  action: Action
+) => {
+  switch (action.type) {
+    default:
+      return state;
+  }
+};
+
+export const battleReducer = combineReducers({
+  player: characterReducer,
+  enemy: characterReducer,
+  round: roundReducer,
+});
