@@ -22,10 +22,7 @@ export function setEnemy(enemy: Character): Action {
   return { type: SET_ENEMY, payload: enemy };
 }
 
-export const damageCharacter = createHigherOrderAction(
-  'DAMAGE_CHARACTER',
-  payload => payload
-);
+export const damageCharacter = createHigherOrderAction('DAMAGE_CHARACTER');
 
 export const GAME_ENGINE = {
   SET_PLAYER,
