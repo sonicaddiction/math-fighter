@@ -7,6 +7,19 @@ export const reducers = combineReducers({
   battle: battleReducer,
 });
 
+export function createHigherOrderReducer(reducerFunction, reducerId) {
+  return (state, action) => {
+    const { id } = action;
+    const isInitializationCall = state === undefined;
+
+    if (id !== reducerId && !isInitializationCall) {
+      return state;
+    }
+
+    return reducerFunction(state, action);
+  };
+}
+
 export type RootState = {};
 
 // store.js

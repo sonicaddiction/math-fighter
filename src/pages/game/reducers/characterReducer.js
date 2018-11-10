@@ -4,6 +4,7 @@ export const characterInitialState = {
   name: '',
   health: 0,
   attackDice: 0,
+  id: null,
 };
 
 export const characterReducer = (state = characterInitialState, action) => {

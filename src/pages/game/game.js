@@ -1,4 +1,4 @@
-import { Grid, withStyles, Paper } from '@material-ui/core';
+import { Grid, withStyles } from '@material-ui/core';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CharacterSheet from '../../components/characterSheet/characterSheet';
