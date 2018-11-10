@@ -1,5 +1,5 @@
 import { characterInitialState, characterReducer } from './characterReducer';
-import { damageCharacter } from '../actionCreators';
+import { DAMAGE_CHARACTER } from '../actionCreators';
 
 describe('CharacterReducer', () => {
   it('Returns the state as default', () => {
@@ -11,7 +11,7 @@ describe('CharacterReducer', () => {
   describe('DAMAGE_CHARACTER', () => {
     it('subtracts the value from the characters health', () => {
       expect(
-        characterReducer({ health: 10 }, damageCharacter('player')(5))
+        characterReducer({ health: 10 }, { type: DAMAGE_CHARACTER, payload: 5 })
       ).toEqual({
         health: 5,
       });
@@ -19,7 +19,10 @@ describe('CharacterReducer', () => {
 
     it('subtracts the value from the characters health and can reduce to below 0', () => {
       expect(
-        characterReducer({ health: 10 }, damageCharacter('player')(15))
+        characterReducer(
+          { health: 10 },
+          { type: DAMAGE_CHARACTER, payload: 15 }
+        )
       ).toEqual({
         health: -5,
       });

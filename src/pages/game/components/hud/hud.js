@@ -38,9 +38,10 @@ function Hud(props: CharacterProps) {
 }
 
 const mapDispatchToProps = dispatch => {
+  const damageEnemy = damageCharacter('enemy');
   return {
     onAttack: () => {
-      dispatch(damageCharacter('enemy')(10));
+      dispatch(damageEnemy(10));
     },
   };
 };
