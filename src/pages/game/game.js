@@ -2,6 +2,7 @@ import { Grid, withStyles, Paper } from '@material-ui/core';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CharacterSheet from '../../components/characterSheet/characterSheet';
+import Hud from './components/hud/hud';
 
 type Props = {};
 
@@ -29,7 +30,7 @@ class Game extends Component<Props> {
             <CharacterSheet character={this.props.battle.enemy} />
           </Grid>
           <Grid item xs={12}>
-            <Paper className={classes.paper}>Battle info</Paper>
+            <Hud />
           </Grid>
         </Grid>
       </div>

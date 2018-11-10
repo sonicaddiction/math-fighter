@@ -1,14 +1,8 @@
 import { CHARACTER } from '../actionCreators';
 
-const createRandomPlayer = () => ({
-  name: `Character-${Math.floor(Math.random() * 1000)}`,
-  health: Math.floor(Math.random() * 10) + 20,
-  attackDice: 1,
-});
-
 export const characterInitialState = {
   name: '',
-  helath: 0,
+  health: 0,
   attackDice: 0,
 };
 
