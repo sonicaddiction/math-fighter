@@ -1,6 +1,6 @@
 import { combineReducers, createStore } from 'redux';
 import { contactReducer } from './pages/contact/contactReducer';
-import { battleReducer } from './pages/game/gameReducer';
+import { battleReducer } from './pages/game/reducers/gameReducer';
 
 export const reducers = combineReducers({
   contact: contactReducer,
