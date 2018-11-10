@@ -7,9 +7,15 @@ export type Battle = {
   currentRound: number,
 };
 
+const createRandomPlayer = (): Character => ({
+  name: `Character-${Math.floor(Math.random() * 1000)}`,
+  health: Math.floor(Math.random() * 20),
+  attackDice: 1,
+});
+
 const initialState: Address = {
-  player: null,
-  enemy: null,
+  player: createRandomPlayer(),
+  enemy: createRandomPlayer(),
   currentRound: 0,
 };
 
