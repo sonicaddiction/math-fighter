@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CharacterSheet from '../../components/characterSheet/characterSheet';
 import Hud from './components/hud/hud';
+import { initBattle } from './actionCreators';
 
 type Props = {};
 
@@ -17,6 +18,10 @@ const styles = theme => ({
 });
 
 class Game extends Component<Props> {
+  componentDidMount() {
+    this.props.initBattle();
+  }
+
   render() {
     const { classes } = this.props;
 
@@ -42,4 +47,15 @@ const mapStateToProps = state => ({
   battle: state.battle,
 });
 
-export default connect(mapStateToProps)(withStyles(styles)(Game));
+const mapDispatchToProps = dispatch => {
+  return {
+    initBattle: () => {
+      dispatch(initBattle());
+    },
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(styles)(Game));
