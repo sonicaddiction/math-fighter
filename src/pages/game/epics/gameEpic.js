@@ -10,6 +10,7 @@ import {
   setCharacterAttackDice,
   setCharacterHealth,
   setCharacterName,
+  INCREMENT_ROUND,
 } from '../actionCreators';
 
 const rollD6 = n =>
@@ -26,6 +27,16 @@ export const damgeEpic = (action$, state$) =>
         `${state$.value.battle[action.id].name} takes ${
           action.payload
         } points of damage.`
+      )
+    )
+  );
+
+export const newRoundEpic = (action$, state$) =>
+  action$.pipe(
+    ofType(INCREMENT_ROUND),
+    map(action =>
+      addBattleMessage(
+        `--- Round ${state$.value.battle.round.currentRound} ---`
       )
     )
   );
@@ -75,4 +86,9 @@ export const initBattleEpic = action$ =>
     })
   );
 
-export const gameEpic = combineEpics(attackEpic, initBattleEpic, damgeEpic);
+export const gameEpic = combineEpics(
+  attackEpic,
+  initBattleEpic,
+  damgeEpic,
+  newRoundEpic
+);

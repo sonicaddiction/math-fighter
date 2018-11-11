@@ -40,6 +40,7 @@ function Hud(props: CharacterProps) {
 const mapDispatchToProps = dispatch => {
   return {
     onAttack: () => {
+      // Dispatch START_ROUND action that handles this instead with delay times etc.
       dispatch(attackWithCharacter('player', 'enemy'));
       dispatch(attackWithCharacter('enemy', 'player'));
       dispatch(incrementRound());

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import CharacterSheet from '../../components/characterSheet/characterSheet';
 import Hud from './components/hud/hud';
 import { initBattle } from './actionCreators';
+import BattleMessages from './components/battleMessages/battleMessages';
 
 type Props = {};
 
@@ -36,6 +37,9 @@ class Game extends Component<Props> {
           </Grid>
           <Grid item xs={12}>
             <Hud />
+          </Grid>
+          <Grid item xs={12}>
+            <BattleMessages />
           </Grid>
         </Grid>
       </div>
