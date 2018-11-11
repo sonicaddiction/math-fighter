@@ -1,15 +1,15 @@
 import { combineEpics, ofType } from 'redux-observable';
-import { flatMap, mapTo, map } from 'rxjs/operators';
+import { flatMap, map } from 'rxjs/operators';
 import {
+  addBattleMessage,
   ATTACK_WITH_CHARACTER,
   damageCharacter,
+  DAMAGE_CHARACTER,
   incrementRound,
   INIT_BATTLE,
   setCharacterAttackDice,
   setCharacterHealth,
   setCharacterName,
-  DAMAGE_CHARACTER,
-  addBattleMessage,
 } from '../actionCreators';
 
 const rollD6 = n =>
@@ -18,15 +18,12 @@ const rollD6 = n =>
     0
   );
 
-const getEnemy = state => state.battle.enemy;
-const getPlayer = state => state.battle.player;
-
 export const damgeEpic = (action$, state$) =>
   action$.pipe(
     ofType(DAMAGE_CHARACTER),
     map(action =>
       addBattleMessage(
-        `${getEnemy(state$.value).name} takes ${
+        `${state$.value.battle[action.id].name} takes ${
           action.payload
         } points of damage.`
       )
@@ -38,9 +35,16 @@ export const attackEpic = (action$, state$) =>
     ofType(ATTACK_WITH_CHARACTER),
     flatMap(action => {
       const attackerId = action.payload.attackerId;
-      const playerAttackDice = state$.value.battle[attackerId].attackDice;
-      const damageRoll = rollD6(playerAttackDice);
-      return [damageCharacter('enemy')(damageRoll)];
+      const attackerName = state$.value.battle[attackerId].name;
+      const defenderId = action.payload.defenderId;
+      const defenderName = state$.value.battle[defenderId].name;
+      const attackerAttackDice = state$.value.battle[attackerId].attackDice;
+      const damageRoll = rollD6(attackerAttackDice);
+
+      return [
+        damageCharacter(defenderId)(damageRoll),
+        addBattleMessage(`${attackerName} attacks ${defenderName}`),
+      ];
     })
   );
 

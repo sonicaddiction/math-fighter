@@ -8,7 +8,7 @@ import {
 } from '@material-ui/core';
 import React from 'react';
 import { connect } from 'react-redux';
-import { attackWithCharacter } from '../../actionCreators';
+import { attackWithCharacter, incrementRound } from '../../actionCreators';
 
 const styles = theme => ({
   card: {
@@ -31,7 +31,7 @@ function Hud(props: CharacterProps) {
         <Typography component="p">Round: {props.round}</Typography>
       </CardContent>
       <CardActions>
-        <Button onClick={props.onAttack}>Attack</Button>
+        <Button onClick={props.onAttack}>Start Round</Button>
       </CardActions>
     </Card>
   );
@@ -41,6 +41,8 @@ const mapDispatchToProps = dispatch => {
   return {
     onAttack: () => {
       dispatch(attackWithCharacter('player', 'enemy'));
+      dispatch(attackWithCharacter('enemy', 'player'));
+      dispatch(incrementRound());
     },
   };
 };
