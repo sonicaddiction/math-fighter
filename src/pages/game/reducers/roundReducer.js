@@ -10,6 +10,11 @@ export const roundReducer = (
   action: Action
 ) => {
   switch (action.type) {
+    case GAME.ADD_BATTLE_MESSAGE:
+      return {
+        ...state,
+        infoText: [...state.infoText, action.payload],
+      };
     case GAME.INCREMENT_ROUND:
       return {
         ...state,

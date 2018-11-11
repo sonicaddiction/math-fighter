@@ -1,5 +1,5 @@
 import { combineEpics, ofType } from 'redux-observable';
-import { flatMap } from 'rxjs/operators';
+import { flatMap, mapTo, map } from 'rxjs/operators';
 import {
   ATTACK_WITH_CHARACTER,
   damageCharacter,
@@ -8,12 +8,29 @@ import {
   setCharacterAttackDice,
   setCharacterHealth,
   setCharacterName,
+  DAMAGE_CHARACTER,
+  addBattleMessage,
 } from '../actionCreators';
 
 const rollD6 = n =>
   Array.from(Array(n)).reduce(
     accumulator => accumulator + Math.ceil(Math.random() * 6),
     0
+  );
+
+const getEnemy = state => state.battle.enemy;
+const getPlayer = state => state.battle.player;
+
+export const damgeEpic = (action$, state$) =>
+  action$.pipe(
+    ofType(DAMAGE_CHARACTER),
+    map(action =>
+      addBattleMessage(
+        `${getEnemy(state$.value).name} takes ${
+          action.payload
+        } points of damage.`
+      )
+    )
   );
 
 export const attackEpic = (action$, state$) =>
@@ -54,4 +71,4 @@ export const initBattleEpic = action$ =>
     })
   );
 
-export const gameEpic = combineEpics(attackEpic, initBattleEpic);
+export const gameEpic = combineEpics(attackEpic, initBattleEpic, damgeEpic);

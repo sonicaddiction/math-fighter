@@ -7,6 +7,7 @@ export const SET_CHARACTER_HEALTH = 'SET_CHARACTER_HEALTH';
 export const SET_CHARACTER_ATTACK_DICE = 'SET_CHARACTER_ATTACK_DICE';
 export const INCREMENT_ROUND = 'INCREMENT_ROUND';
 export const ATTACK_WITH_CHARACTER = 'ATTACK_WITH_CHARACTER';
+export const ADD_BATTLE_MESSAGE = 'ADD_BATTLE_MESSAGE';
 
 /* TODO: Fix transpilation
 type DamageCharacterPayload = {
@@ -39,6 +40,11 @@ export const initBattle = () => ({
   type: INIT_BATTLE,
 });
 
+export const addBattleMessage = (message: string) => ({
+  type: ADD_BATTLE_MESSAGE,
+  payload: message,
+});
+
 export const CHARACTER = {
   DAMAGE_CHARACTER,
   SET_CHARACTER_NAME,
@@ -49,4 +55,5 @@ export const CHARACTER = {
 export const GAME = {
   INCREMENT_ROUND,
   ATTACK_WITH_CHARACTER,
+  ADD_BATTLE_MESSAGE,
 };
