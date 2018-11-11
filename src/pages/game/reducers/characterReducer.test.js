@@ -1,5 +1,5 @@
 import { characterInitialState, characterReducer } from './characterReducer';
-import { DAMAGE_CHARACTER } from '../actionCreators';
+import { DAMAGE_CHARACTER, SET_CHARACTER_NAME } from '../actionCreators';
 
 describe('CharacterReducer', () => {
   it('Returns the state as default', () => {
@@ -25,6 +25,16 @@ describe('CharacterReducer', () => {
         )
       ).toEqual({
         health: -5,
+      });
+    });
+  });
+
+  describe('SET_CHARACTER_NAME', () => {
+    it('subtracts the value from the characters health', () => {
+      expect(
+        characterReducer({}, { type: SET_CHARACTER_NAME, payload: 'Name 1' })
+      ).toEqual({
+        name: 'Name 1',
       });
     });
   });

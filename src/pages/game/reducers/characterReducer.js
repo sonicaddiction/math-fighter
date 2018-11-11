@@ -14,6 +14,11 @@ export const characterReducer = (state = characterInitialState, action) => {
         ...state,
         health: state.health - action.payload,
       };
+    case CHARACTER.SET_CHARACTER_NAME:
+      return {
+        ...state,
+        name: action.payload,
+      };
     default:
       return state;
   }
