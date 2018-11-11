@@ -1,14 +1,14 @@
 import {
-  withStyles,
-  Card,
   Button,
-  CardContent,
+  Card,
   CardActions,
+  CardContent,
   Typography,
+  withStyles,
 } from '@material-ui/core';
 import React from 'react';
 import { connect } from 'react-redux';
-import { damageCharacter } from '../../actionCreators';
+import { attackWithCharacter } from '../../actionCreators';
 
 const styles = theme => ({
   card: {
@@ -38,10 +38,9 @@ function Hud(props: CharacterProps) {
 }
 
 const mapDispatchToProps = dispatch => {
-  const damageEnemy = damageCharacter('enemy');
   return {
     onAttack: () => {
-      dispatch(damageEnemy(10));
+      dispatch(attackWithCharacter('player', 'enemy'));
     },
   };
 };

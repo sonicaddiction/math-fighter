@@ -6,6 +6,7 @@ export const SET_CHARACTER_NAME = 'SET_CHARACTER_NAME';
 export const SET_CHARACTER_HEALTH = 'SET_CHARACTER_HEALTH';
 export const SET_CHARACTER_ATTACK_DICE = 'SET_CHARACTER_ATTACK_DICE';
 export const INCREMENT_ROUND = 'INCREMENT_ROUND';
+export const ATTACK_WITH_CHARACTER = 'ATTACK_WITH_CHARACTER';
 
 /* TODO: Fix transpilation
 type DamageCharacterPayload = {
@@ -22,6 +23,13 @@ export const setCharacterHealth = createHigherOrderAction(SET_CHARACTER_HEALTH);
 export const setCharacterAttackDice = createHigherOrderAction(
   SET_CHARACTER_ATTACK_DICE
 );
+export const attackWithCharacter = (attackerId, defenderId) => ({
+  type: ATTACK_WITH_CHARACTER,
+  payload: {
+    attackerId,
+    defenderId,
+  },
+});
 
 export const incrementRound = () => ({
   type: INCREMENT_ROUND,
@@ -40,4 +48,5 @@ export const CHARACTER = {
 
 export const GAME = {
   INCREMENT_ROUND,
+  ATTACK_WITH_CHARACTER,
 };
