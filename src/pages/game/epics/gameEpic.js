@@ -1,18 +1,30 @@
-import { flatMap, mapTo } from 'rxjs/operators';
+import { combineEpics, ofType } from 'redux-observable';
+import { flatMap } from 'rxjs/operators';
 import {
-  DAMAGE_CHARACTER,
+  ATTACK_WITH_CHARACTER,
+  damageCharacter,
   incrementRound,
   INIT_BATTLE,
-  setCharacterName,
-  setCharacterHealth,
   setCharacterAttackDice,
+  setCharacterHealth,
+  setCharacterName,
 } from '../actionCreators';
-import { combineEpics, ofType } from 'redux-observable';
 
-export const attackEpic = action$ =>
+const rollD6 = n =>
+  Array.from(Array(n)).reduce(
+    accumulator => accumulator + Math.ceil(Math.random() * 6),
+    0
+  );
+
+export const attackEpic = (action$, state$) =>
   action$.pipe(
-    ofType(DAMAGE_CHARACTER),
-    mapTo(incrementRound())
+    ofType(ATTACK_WITH_CHARACTER),
+    flatMap(action => {
+      const attackerId = action.payload.attackerId;
+      const playerAttackDice = state$.value.battle[attackerId].attackDice;
+      const damageRoll = rollD6(playerAttackDice);
+      return [damageCharacter('enemy')(damageRoll)];
+    })
   );
 
 const initCharacterActions = (id, name, health, attackDice) => [
