@@ -92,18 +92,15 @@ export const initBattleEpic = action$ =>
 export const fetchCharaterNameEpic = (action$, state) =>
   action$.pipe(
     ofType(FETCH_CHARACTER_NAME),
-    mergeMap(action => {
-      const fetchUserCall = api.fetchUser();
-      return fetchUserCall.pipe(
-        map(({ results }) => {
-          return {
-            type: SET_CHARACTER_NAME,
-            id: action.id,
-            payload: results[0].name.first,
-          };
-        })
-      );
-    })
+    mergeMap(action =>
+      api.fetchUser().pipe(
+        map(({ results }) => ({
+          type: SET_CHARACTER_NAME,
+          id: action.id,
+          payload: results[0].name.first,
+        }))
+      )
+    )
   );
 
 export const gameEpic = combineEpics(
