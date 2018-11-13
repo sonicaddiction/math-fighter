@@ -1,5 +1,5 @@
 import { combineEpics, ofType } from 'redux-observable';
-import { flatMap, map, mergeMap } from 'rxjs/operators';
+import { flatMap, map, mergeMap, catchError } from 'rxjs/operators';
 import {
   addBattleMessage,
   ATTACK_WITH_CHARACTER,
@@ -15,6 +15,7 @@ import {
   fetchCharacterName,
 } from '../actionCreators';
 import { api } from '../../../util/api';
+import { of } from 'rxjs';
 
 const rollD6 = n =>
   Array.from(Array(n)).reduce(
@@ -98,7 +99,14 @@ export const fetchCharaterNameEpic = (action$, state) =>
           type: SET_CHARACTER_NAME,
           id: action.id,
           payload: results[0].name.first,
-        }))
+        })),
+        catchError(error =>
+          of({
+            type: SET_CHARACTER_NAME,
+            id: action.id,
+            payload: action.id,
+          })
+        )
       )
     )
   );
