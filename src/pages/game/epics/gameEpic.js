@@ -1,5 +1,5 @@
 import { combineEpics, ofType } from 'redux-observable';
-import { flatMap, map } from 'rxjs/operators';
+import { flatMap, map, mergeMap } from 'rxjs/operators';
 import {
   addBattleMessage,
   ATTACK_WITH_CHARACTER,
@@ -9,9 +9,12 @@ import {
   INIT_BATTLE,
   setCharacterAttackDice,
   setCharacterHealth,
-  setCharacterName,
   INCREMENT_ROUND,
+  FETCH_CHARACTER_NAME,
+  SET_CHARACTER_NAME,
+  fetchCharacterName,
 } from '../actionCreators';
+import { api } from '../../../util/api';
 
 const rollD6 = n =>
   Array.from(Array(n)).reduce(
@@ -60,7 +63,7 @@ export const attackEpic = (action$, state$) =>
   );
 
 const initCharacterActions = (id, name, health, attackDice) => [
-  setCharacterName(id)(name),
+  fetchCharacterName(id)(),
   setCharacterHealth(id)(health),
   setCharacterAttackDice(id)(attackDice),
 ];
@@ -86,9 +89,27 @@ export const initBattleEpic = action$ =>
     })
   );
 
+export const fetchCharaterNameEpic = (action$, state) =>
+  action$.pipe(
+    ofType(FETCH_CHARACTER_NAME),
+    mergeMap(action => {
+      const fetchUserCall = api.fetchUser();
+      return fetchUserCall.pipe(
+        map(({ results }) => {
+          return {
+            type: SET_CHARACTER_NAME,
+            id: action.id,
+            payload: results[0].name.first,
+          };
+        })
+      );
+    })
+  );
+
 export const gameEpic = combineEpics(
   attackEpic,
   initBattleEpic,
   damgeEpic,
-  newRoundEpic
+  newRoundEpic,
+  fetchCharaterNameEpic
 );

@@ -3,6 +3,7 @@ import { createHigherOrderAction } from '../../util/reduxUtils';
 export const DAMAGE_CHARACTER = 'DAMAGE_CHARACTER';
 export const INIT_BATTLE = 'INIT_BATTLE';
 export const SET_CHARACTER_NAME = 'SET_CHARACTER_NAME';
+export const FETCH_CHARACTER_NAME = 'FETCH_CHARACTER_NAME';
 export const SET_CHARACTER_HEALTH = 'SET_CHARACTER_HEALTH';
 export const SET_CHARACTER_ATTACK_DICE = 'SET_CHARACTER_ATTACK_DICE';
 export const INCREMENT_ROUND = 'INCREMENT_ROUND';
@@ -20,6 +21,7 @@ export const damageCharacter = createHigherOrderAction<DamageCharacterPayload>(
 
 export const damageCharacter = createHigherOrderAction(DAMAGE_CHARACTER);
 export const setCharacterName = createHigherOrderAction(SET_CHARACTER_NAME);
+export const fetchCharacterName = createHigherOrderAction(FETCH_CHARACTER_NAME);
 export const setCharacterHealth = createHigherOrderAction(SET_CHARACTER_HEALTH);
 export const setCharacterAttackDice = createHigherOrderAction(
   SET_CHARACTER_ATTACK_DICE
