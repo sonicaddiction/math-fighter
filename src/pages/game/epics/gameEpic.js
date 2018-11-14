@@ -16,6 +16,7 @@ import {
 } from '../actionCreators';
 import { api } from '../../../util/api';
 import { of } from 'rxjs';
+import { capitalizeString } from '../../../util/generalHelpers';
 
 const rollD6 = n =>
   Array.from(Array(n)).reduce(
@@ -95,16 +96,19 @@ export const fetchCharaterNameEpic = (action$, state) =>
     ofType(FETCH_CHARACTER_NAME),
     mergeMap(action =>
       api.fetchUser().pipe(
-        map(({ results }) => ({
-          type: SET_CHARACTER_NAME,
-          id: action.id,
-          payload: results[0].name.first,
-        })),
+        map(({ results }) => {
+          const name = capitalizeString(results[0].name.first);
+          return {
+            type: SET_CHARACTER_NAME,
+            id: action.id,
+            payload: name,
+          };
+        }),
         catchError(error =>
           of({
             type: SET_CHARACTER_NAME,
             id: action.id,
-            payload: action.id,
+            payload: capitalizeString(action.id),
           })
         )
       )
